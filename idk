@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Marketing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+      body { font-family: 'Poppins', sans-serif; }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-10">
+      <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-blue-600">MyProducts</h1>
+        <nav class="space-x-6">
+          <a href="#products" class="hover:text-blue-500">Products</a>
+          <a href="#about" class="hover:text-blue-500">About</a>
+          <a href="#contact" class="hover:text-blue-500">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="text-center py-20 bg-blue-100">
+      <h2 class="text-4xl font-bold mb-4">Boost Your Life with Our Products</h2>
+      <p class="text-lg mb-6">High quality, affordable, and made for you.</p>
+      <a href="#products" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700">Shop Now</a>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="max-w-6xl mx-auto px-4 py-16">
+      <h3 class="text-3xl font-semibold text-center mb-10">Our Top Products</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Product Card -->
+        <div class="bg-white shadow-md rounded-xl overflow-hidden">
+          <img src="https://via.placeholder.com/300x200" alt="Product" class="w-full">
+          <div class="p-4">
+            <h4 class="font-bold text-xl mb-2">Product Name</h4>
+            <p class="text-gray-600 mb-4">Short description of the product.</p>
+            <div class="flex justify-between items-center">
+              <span class="text-blue-600 font-bold">$29.99</span>
+              <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buy</button>
+            </div>
+          </div>
+        </div>
+        <!-- Copy this card for more products -->
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-white py-16 px-4 text-center">
+      <div class="max-w-4xl mx-auto">
+        <h3 class="text-3xl font-semibold mb-4">Why Choose Us?</h3>
+        <p class="text-gray-700 text-lg">We’re dedicated to providing the best quality products that make your life easier, better, and more enjoyable. Trusted by thousands, we stand by what we sell.</p>
+      </div>
+    </section>
+
+    <!-- Contact / Footer -->
+    <footer id="contact" class="bg-gray-900 text-white py-10 px-4">
+      <div class="max-w-6xl mx-auto text-center">
+        <h4 class="text-xl font-semibold mb-2">Get in Touch</h4>
+        <p class="mb-4">Email: contact@myproducts.com</p>
+        <p>© 2025 MyProducts. All rights reserved.</p>
+      </div>
+    </footer>
+
+  </body>
+</html>
