@@ -1,0 +1,82 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <chrono>
+#include <thread>
+#include <cstdlib>
+
+const int WIDTH = 80;
+const int HEIGHT = 40;
+const int NUM_STARS = 100;
+const double G = 0.05; // Gravitational constant (scaled for simulation)
+const double BLACKHOLE_MASS = 5000;
+
+struct Star {
+    double x, y;
+    double vx, vy;
+};
+
+void clearScreen() {
+    std::cout << "\033[2J\033[1;1H";
+}
+
+void render(const std::vector<Star>& stars) {
+    char screen[HEIGHT][WIDTH];
+    for (int i = 0; i < HEIGHT; ++i)
+        for (int j = 0; j < WIDTH; ++j)
+            screen[i][j] = ' ';
+
+    screen[HEIGHT/2][WIDTH/2] = 'O'; // Black Hole
+
+    for (const auto& star : stars) {
+        int sx = (int)(star.x + WIDTH/2);
+        int sy = (int)(star.y + HEIGHT/2);
+        if (sx >= 0 && sx < WIDTH && sy >= 0 && sy < HEIGHT)
+            screen[sy][sx] = '*';
+    }
+
+    for (int i = 0; i < HEIGHT; ++i) {
+        for (int j = 0; j < WIDTH; ++j)
+            std::cout << screen[i][j];
+        std::cout << '\n';
+    }
+}
+
+int main() {
+    std::vector<Star> stars;
+
+    // Initialize stars with random positions and velocities
+    for (int i = 0; i < NUM_STARS; ++i) {
+        Star s;
+        s.x = (rand() % WIDTH) - WIDTH/2;
+        s.y = (rand() % HEIGHT) - HEIGHT/2;
+        s.vx = ((rand() % 100) / 100.0 - 0.5) * 2;
+        s.vy = ((rand() % 100) / 100.0 - 0.5) * 2;
+        stars.push_back(s);
+    }
+
+    while (true) {
+        // Physics Update
+        for (auto& s : stars) {
+            double dx = -s.x;
+            double dy = -s.y;
+            double dist = sqrt(dx*dx + dy*dy) + 0.1; // Avoid divide by zero
+
+            double force = G * BLACKHOLE_MASS / (dist * dist);
+            double ax = force * (dx / dist);
+            double ay = force * (dy / dist);
+
+            s.vx += ax;
+            s.vy += ay;
+
+            s.x += s.vx;
+            s.y += s.vy;
+        }
+
+        clearScreen();
+        render(stars);
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+
+    return 0;
+}
